@@ -17,7 +17,8 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8"
+      *ngIf="selectedQuiz !== undefined">
       <div class="d-flex align-content-center">
         <button class="btn btn-outline-dark">Save</button>
         <button class="btn btn-link">Cancel</button>
@@ -34,6 +35,14 @@
         <div class="card-header">General</div>
         <div class="card-body">Coming soon</div>
       </div>
+    </div>
+    <div class="col-md-8"
+      *ngIf="selectedQuiz === undefined">
+      <div class="card bg-light text-center">
+        <h2>No Quiz Selected</h2>
+        <p>Please select or add a quiz to continue</p>
+      </div>
+
     </div>
   </div>
 </div>
