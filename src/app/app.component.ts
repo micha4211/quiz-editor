@@ -1,6 +1,14 @@
-import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
+
+interface QuizDisplay {
+  quizName: string;
+  quizQuestions: QuestionDisplay[];
+}
+
+interface QuestionDisplay {
+  questionText: string;
+}
 
 @Component({
   selector: 'app-root',
@@ -14,6 +22,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     const data = this.quizSVC.loadQuizzes();
+
+    this.quizzes = data.map((x: any) => ({
+      quizName: x.name,
+      quizQuestions: x.questions.map((y: any) => ({
+        questionText: y.name
+      }))
+    }));
     console.log(data);
   }
+
+  quizzes: QuizDisplay[] = [];
 }
