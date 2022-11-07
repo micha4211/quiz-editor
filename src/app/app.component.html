@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <button class="btn btn-outline-success mb-3">Add New Quiz</button>
+      <button class="btn btn-primary mb-3" (click)="addQuiz()">Add+ Quiz</button>
       <div class="card">
         <div class="list-group list-group-flush">
           <button 
@@ -17,15 +17,16 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8"
-      *ngIf="selectedQuiz !== undefined">
+    <div class="col-md-8" *ngIf="selectedQuiz !== undefined">
       <div class="d-flex align-content-center">
-        <button class="btn btn-outline-dark">Save</button>
+        <button class="btn btn-success">Save</button>
         <button class="btn btn-link">Cancel</button>
       </div>
       <div class="card mt-3">
         <div class="card-header">General</div>
-        <div class="card-body">{{ selectedQuiz.quizName }}</div>
+        <div class="card-body">
+          <input type="text" class="form-control" [(ngModel)]="selectedQuiz.quizName"/>
+        </div>
       </div>
       <div class="card mt-3">
         <div class="card-header">General</div>
