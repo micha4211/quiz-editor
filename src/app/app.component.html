@@ -8,11 +8,16 @@
       <div class="card">
         <div class="list-group list-group-flush">
           <button 
-            class="list-group-item list-group-item-action" 
+            class="list-group-item list-group-item-action d-flex justify-content-between" 
             *ngFor="let q of quizzes"
             [class.active]="q === selectedQuiz"
             (click)="selectQuiz(q)">
-            {{ q.quizName }}
+            <span class="text-truncate mr-3 mt-1">
+              {{ q.quizName }}
+            </span>
+            <small class="fst-italic fw-lighter btn btn-info" >
+              {{ q.quizQuestions.length }}
+            </small>
           </button>
         </div>
       </div>
