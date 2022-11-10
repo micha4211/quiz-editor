@@ -11,7 +11,8 @@
             class="list-group-item list-group-item-action d-flex justify-content-between" 
             *ngFor="let q of quizzes"
             [class.active]="q === selectedQuiz"
-            (click)="selectQuiz(q)">
+            (click)="selectQuiz(q)"
+            [style.text-decoration]="q.markedForDelete ? 'line-through' : 'inherit'">
             <span class="text-truncate mr-3 mt-1">
               {{ q.quizName }}
             </span>
