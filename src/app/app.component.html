@@ -70,7 +70,9 @@
       *ngIf="selectedQuiz === undefined">
       <div class="card bg-light text-center mt-5">
         <h2>No Quiz Selected</h2>
-        <p>Please select or add a quiz to continue</p>
+        <p class="d-flex align-items-center justify-content-center">Please select or 
+          <button class="btn btn-link px-1" (click)="addQuiz()"> add a quiz </button>
+           to continue.</p>
       </div>
 
     </div>
