@@ -34,6 +34,10 @@ export class QuizService {
             name: 'Question 2'
           }
         ]
+      },
+      {
+        name: 'Quiz 3',
+        questions: []
       }
     ];
 

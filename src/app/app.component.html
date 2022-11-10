@@ -16,7 +16,8 @@
             <span class="text-truncate mr-3 mt-1">
               {{ q.quizName }}
             </span>
-            <small class="fst-italic fw-lighter btn btn-info" >
+            <small class="fst-italic fw-lighter btn btn-info" 
+            [class.btn-danger]="q.quizQuestions.length === 0" >
               {{ q.quizQuestions.length }}
             </small>
           </button>
@@ -35,7 +36,9 @@
         </div>
       </div>
       <div class="card mt-3">
-        <div class="card-header">Questions</div>
+        <div class="card-header">Questions
+          <span class="text-danger" *ngIf="selectedQuiz.quizQuestions.length === 0">(no questions)</span>
+        </div>
         <div class="card-body">
           <button class="btn btn-outline-primary" (click)="addQuestion()">Add Question</button>
           <div class="row mt-3" *ngFor="let question of selectedQuiz.quizQuestions">
