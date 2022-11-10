@@ -1,4 +1,4 @@
-<div class="row mt3">
+<div class="row mt3 mr-5">
   <h3>My Quiz Editor</h3>
 </div>
 <div class="container">
@@ -28,7 +28,7 @@
         <button class="btn btn-link">Cancel</button>
       </div>
       <div class="card mt-3">
-        <div class="card-header">General</div>
+        <div class="card-header">Quiz Title</div>
         <div class="card-body">
           <input type="text" class="form-control" [(ngModel)]="selectedQuiz.quizName"/>
         </div>
@@ -51,8 +51,15 @@
         </div>
       </div>
       <div class="card mt-3">
-        <div class="card-header">General</div>
-        <div class="card-body">Coming soon</div>
+        <div class="card-header text-danger">Danger Zone</div>
+        <div class="card-body">
+          <div class="form-check">
+            <label class="form-check label text-danger">
+              <input type="checkbox" class="form-check-input" [(ngModel)]="selectedQuiz.markedForDelete"/>
+              Marked for Delete
+            </label>
+          </div>    
+        </div>
       </div>
     </div>
     <div class="col-md-8"

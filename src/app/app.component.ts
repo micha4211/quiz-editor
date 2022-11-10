@@ -4,6 +4,7 @@ import { QuizService } from './quiz.service';
 interface QuizDisplay {
   quizName: string;
   quizQuestions: QuestionDisplay[];
+  markedForDelete: boolean;
 }
 
 interface QuestionDisplay {
@@ -27,7 +28,8 @@ export class AppComponent implements OnInit {
       quizName: x.name,
       quizQuestions: x.questions.map((y: any) => ({
         questionText: y.name
-      }))
+      })),
+      markedForDelete: false
     }));
     console.log(data);
   }
@@ -44,7 +46,8 @@ export class AppComponent implements OnInit {
 
     const addedQuiz: QuizDisplay = {
       quizName: 'Untitled Quiz',
-      quizQuestions: []
+      quizQuestions: [],
+      markedForDelete: false
     };
 
     this.quizzes = [
