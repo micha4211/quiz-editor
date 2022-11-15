@@ -1,11 +1,11 @@
-<div class="row mt3 mr-5">
+<div class="row mt3 ml-5">
   <h3>My Quiz Editor</h3>
 </div>
 <div class="container">
   <div class="row">
     <div class="col-md-4">
       <button class="btn btn-primary mb-3" (click)="addQuiz()">Add+ Quiz</button>
-      <div class="card">
+      <div class="card" *ngIf="quizzes.length > 0">
         <div class="list-group list-group-flush">
           <button 
             class="list-group-item list-group-item-action d-flex justify-content-between" 
