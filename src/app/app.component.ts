@@ -41,14 +41,7 @@ export class AppComponent implements OnInit {
         console.error("error:", err);
       }
     });
-   /* this.quizzes = data.map((x: any) => ({
-      quizName: x.name,
-      quizQuestions: x.questions.map((y: any) => ({
-        questionText: y.name
-      })),
-      markedForDelete: false
-    }));
-    console.log(data);*/
+
   }
 
   quizzes: QuizDisplay[] = [];
@@ -89,4 +82,61 @@ export class AppComponent implements OnInit {
       this.selectedQuiz.quizQuestions = this.selectedQuiz.quizQuestions.filter(x => x !== questionToRemove)
     }
   };
+
+  jsPromisesOne = () => {
+    const n1 = this.quizSVC.getMagicNumber(true);
+    console.log(n1);
+
+    n1
+      .then( 
+        n => {
+          console.log(n);
+
+          const n2 = this.quizSVC.getMagicNumber(true);
+
+          n2
+
+        }
+
+      )
+      .catch(
+        e => {
+          console.log(e);
+        }
+      );
+  }
+
+  jsPromisesTwo = async () => {
+    try {
+      const n1 = await this.quizSVC.getMagicNumber(true);
+      console.log(n1);
+
+      const n2 = await this.quizSVC.getMagicNumber(true);
+      console.log(n2);
+    }
+
+    catch (err) {
+      console.log(err);
+    }
+  }
+
+  jsPromisesThree = async () => {
+    try {
+      const n1 =  this.quizSVC.getMagicNumber(false);
+      console.log("Three N1:", n1);
+
+      const n2 =  this.quizSVC.getMagicNumber(true);
+      console.log("Three N2:", n2);
+
+      const results = await Promise.any([n1,n2]);
+      console.log("function 3:", results);
+
+      const raceResults = await Promise.race([n1,n2]);
+      console.log("function 3 race:", raceResults);
+    }
+
+    catch (err) {
+      console.log("Function Three:", err);
+    }
+  }
 }
