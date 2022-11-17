@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from './quiz.service';
 
+
 interface QuizDisplay {
   quizName: string;
   quizQuestions: QuestionDisplay[];
@@ -21,26 +22,28 @@ export class AppComponent implements OnInit {
 
   constructor(private quizSVC: QuizService) {};
 
+  errorLoadingQuizzes = false;
+
+  loadQuizzesFromWeb = async () => {
+
+    try {
+      const data = await this.quizSVC.loadQuizzes();
+
+      this.quizzes = data.map((x: any) => ({
+        quizName: x.name,
+        quizQuestions: x.questions.map((y: any) => ({
+          questionText: y.name
+        })),
+        markedForDelete: false
+      }));
+    }
+    catch (err) {
+      console.log(err);
+    }
+  };
+
   ngOnInit() {
-    const data = this.quizSVC.loadQuizzes();
-
-    data.subscribe({
-      next: (data) => {
-        console.log("data:", data);
-
-        this.quizzes = data.map((x: any) => ({
-          quizName: x.name,
-          quizQuestions: x.questions.map((y: any) => ({
-            questionText: y.name
-          })),
-          markedForDelete: false
-        }));
-        
-      },
-      error: (err) => {
-        console.error("error:", err);
-      }
-    });
+    this.loadQuizzesFromWeb();
 
   }
 
