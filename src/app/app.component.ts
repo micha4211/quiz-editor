@@ -15,17 +15,21 @@ interface QuestionDisplay {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   title = 'quiz-editor';
 
-  constructor(private quizSVC: QuizService) {};
+  quizzesLoading: boolean;
+
+  constructor(private quizSVC: QuizService) {
+    this.quizzesLoading = true;
+  };
 
   errorLoadingQuizzes = false;
 
   loadQuizzesFromWeb = async () => {
-
+console.log(this.quizzesLoading);
     try {
       const data = await this.quizSVC.loadQuizzes();
 
@@ -36,15 +40,17 @@ export class AppComponent implements OnInit {
         })),
         markedForDelete: false
       }));
+      
     }
     catch (err) {
       console.log(err);
     }
+    this.quizzesLoading = false;
+    console.log(this.quizzesLoading);
   };
 
   ngOnInit() {
     this.loadQuizzesFromWeb();
-
   }
 
   quizzes: QuizDisplay[] = [];
