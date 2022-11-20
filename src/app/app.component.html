@@ -2,7 +2,7 @@
   <h3>My Quiz Editor</h3>
 </div>
 <div class="container">
-  <div class="row alert alert-primary text-center mt-5 p-2" *ngIf="quizzesLoading === true">
+  <div class="row alert alert-primary text-center mt-5 p-2" *ngIf="quizzesLoaded === false">
     <div class="m-2">
       <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status"></div>
       &nbsp;
@@ -12,7 +12,7 @@
     </div>
       <div class="sr-only h4">&nbsp;Loading Quizzes ...</div>
   </div>
-  <div class="row" *ngIf="quizzesLoading === false">
+  <div class="row" *ngIf="quizzesLoaded === true">
     <div class="col-md-4">
       <button class="btn btn-primary mb-3" (click)="addQuiz()">Add+ Quiz</button>
       <div class="card" *ngIf="quizzes.length > 0">

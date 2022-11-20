@@ -20,16 +20,16 @@ interface QuestionDisplay {
 export class AppComponent implements OnInit {
   title = 'quiz-editor';
 
-  quizzesLoading: boolean;
+  quizzesLoaded: boolean;
 
   constructor(private quizSVC: QuizService) {
-    this.quizzesLoading = true;
+    this.quizzesLoaded = false;
   };
 
   errorLoadingQuizzes = false;
 
   loadQuizzesFromWeb = async () => {
-console.log(this.quizzesLoading);
+console.log(this.quizzesLoaded);
     try {
       const data = await this.quizSVC.loadQuizzes();
 
@@ -45,8 +45,8 @@ console.log(this.quizzesLoading);
     catch (err) {
       console.log(err);
     }
-    this.quizzesLoading = false;
-    console.log(this.quizzesLoading);
+    this.quizzesLoaded = true;
+    console.log(this.quizzesLoaded);
   };
 
   ngOnInit() {
