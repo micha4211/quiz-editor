@@ -6,6 +6,7 @@ interface QuizDisplay {
   quizName: string;
   quizQuestions: QuestionDisplay[];
   markedForDelete: boolean;
+  newlyAdded: boolean;
 }
 
 interface QuestionDisplay {
@@ -44,7 +45,8 @@ export class AppComponent implements OnInit {
         quizQuestions: x.questions.map((y: any) => ({
           questionText: y.name
         })),
-        markedForDelete: false
+        markedForDelete: false,
+        newlyAdded: false
       }));
       
     }
@@ -72,7 +74,8 @@ export class AppComponent implements OnInit {
     const addedQuiz: QuizDisplay = {
       quizName: 'Untitled Quiz',
       quizQuestions: [],
-      markedForDelete: false
+      markedForDelete: false,
+      newlyAdded: true
     };
 
     this.quizzes = [
@@ -107,6 +110,14 @@ export class AppComponent implements OnInit {
 
   get deletedQuizCount() {
     return this.getDeletedQuizzes().length;
+  }
+
+  getAddedQuizzes = () => this.quizzes.filter(x => 
+    x.newlyAdded 
+    && !x.markedForDelete);
+
+  get addedQuizzesCount() {
+    return this.getAddedQuizzes().length;
   }
 
   jsPromisesOne = () => {
