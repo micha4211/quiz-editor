@@ -22,12 +22,13 @@
             *ngFor="let q of quizzes"
             [class.active]="q === selectedQuiz"
             (click)="selectQuiz(q)"
-            [style.text-decoration]="q.markedForDelete ? 'line-through' : 'inherit'">
+            [style.text-decoration]="q.markedForDelete ? 'line-through' : 'inherit'"
+            [style.color]="q.markedForDelete ? 'red' : 'inherit'">
             <span class="text-truncate mr-3 mt-1">
               {{ q.quizName }}
             </span>
-            <small class="fst-italic fw-lighter btn btn-info" 
-            [class.btn-danger]="q.quizQuestions.length === 0" >
+            <small class="fst-italic fw-lighter badge bg-primary p-2" 
+            [class.bg-warning]="q.quizQuestions.length === 0" >
               {{ q.quizQuestions.length }}
             </small>
           </button>
@@ -47,6 +48,9 @@
           <span 
           *ngIf="addedQuizzesCount > 0"
           class="badge bg-success ms-1">+ {{ addedQuizzesCount }}</span>
+          <span 
+          *ngIf="editedQuizCount > 0"
+          class="badge bg-warning ms-1">* {{ editedQuizCount }}</span>
         </button>
         <button class="btn btn-link" (click)="cancelAllChanges()">Cancel all changes</button>
       </div>

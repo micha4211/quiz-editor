@@ -7,6 +7,7 @@ interface QuizDisplay {
   quizQuestions: QuestionDisplay[];
   markedForDelete: boolean;
   newlyAdded: boolean;
+  naiveCheckSum?: string;
 }
 
 interface QuestionDisplay {
@@ -47,6 +48,11 @@ export class AppComponent implements OnInit {
         })),
         markedForDelete: false,
         newlyAdded: false
+      }));
+
+      this.quizzes = this.quizzes.map(x => ({
+        ...x,
+        naiveCheckSum: this.generateNaiveCheckSum(x)
       }));
       
     }
@@ -110,7 +116,7 @@ export class AppComponent implements OnInit {
 
   get deletedQuizCount() {
     return this.getDeletedQuizzes().length;
-  }
+  };
 
   getAddedQuizzes = () => this.quizzes.filter(x => 
     x.newlyAdded 
@@ -118,7 +124,28 @@ export class AppComponent implements OnInit {
 
   get addedQuizzesCount() {
     return this.getAddedQuizzes().length;
-  }
+  };
+
+  generateNaiveCheckSum = (q: QuizDisplay) => {
+    return q.quizName
+      + "~"
+      + q.quizQuestions.map(x => x.questionText).join("~");
+  };
+
+  getEditedQuiz = () => this.quizzes.filter(x => 
+    !x.newlyAdded 
+    && !x.markedForDelete
+    && this.generateNaiveCheckSum(x) != x.naiveCheckSum
+    );
+
+  get editedQuizCount() {
+    return this.getEditedQuiz().length;
+  };
+
+
+
+
+
 
   jsPromisesOne = () => {
     const n1 = this.quizSVC.getMagicNumber(true);
