@@ -98,6 +98,11 @@ export class AppComponent implements OnInit {
     }
   };
 
+  cancelAllChanges = () => {
+    this.loadQuizzesFromWeb();
+    this.selectedQuiz = undefined;
+  }
+
   jsPromisesOne = () => {
     const n1 = this.quizSVC.getMagicNumber(true);
     console.log(n1);
