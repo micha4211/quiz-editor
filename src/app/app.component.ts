@@ -103,6 +103,12 @@ export class AppComponent implements OnInit {
     this.selectedQuiz = undefined;
   }
 
+  getDeletedQuizzes = () => this.quizzes.filter(x => x.markedForDelete);
+
+  get deletedQuizCount() {
+    return this.getDeletedQuizzes().length;
+  }
+
   jsPromisesOne = () => {
     const n1 = this.quizSVC.getMagicNumber(true);
     console.log(n1);
