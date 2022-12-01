@@ -40,7 +40,10 @@
     </div>
     <div class="col-md-8" *ngIf="selectedQuiz !== undefined">
       <div class="d-flex align-content-center">
-        <button class="btn btn-outline-success">
+        <button class="btn"
+        [class.btn-outline-dark]="deletedQuizCount + editedQuizCount + addedQuizzesCount == 0"
+        [class.btn-dark]="deletedQuizCount + editedQuizCount + addedQuizzesCount > 0"
+        >
           Save
           <span 
           *ngIf="deletedQuizCount > 0"
