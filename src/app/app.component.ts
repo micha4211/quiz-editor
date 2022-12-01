@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuizService } from './quiz.service';
-
+import { QuizService, ShapeForSavingEditedQuizzes, ShapeForSavingNewQuizzes } from './quiz.service';
 
 interface QuizDisplay {
   quizName: string;
@@ -142,8 +141,30 @@ export class AppComponent implements OnInit {
     return this.getEditedQuiz().length;
   };
 
+  saveQuizzes = async() => {
+    try {
+      const newQuizzes: ShapeForSavingNewQuizzes[] = this.getAddedQuizzes().map(x => ({
+        quizName: x.quizName,
+        quizQuestions: x.quizQuestions.map(y => y.questionText)
+      }))
+      
+      const editedQuizzes: ShapeForSavingEditedQuizzes[] = this.getEditedQuiz().map(x => ({
+        quiz: x.quizName,
+        questions: x.quizQuestions.map(y => ({
+          question: y.questionText
+        }))
 
-
+      }));
+      const numberOfEditedQuizzesSaved = await this.quizSVC.saveQuizzes(
+        editedQuizzes,
+        newQuizzes
+      )
+      console.log("edited quizzes save", numberOfEditedQuizzesSaved);
+    }
+    catch (e) {
+      console.error(e);
+    }
+  }
 
 
 
