@@ -43,6 +43,7 @@
         <button class="btn"
         [class.btn-outline-dark]="deletedQuizCount + editedQuizCount + addedQuizzesCount == 0"
         [class.btn-dark]="deletedQuizCount + editedQuizCount + addedQuizzesCount > 0"
+        (click)="saveQuizzes()"
         >
           Save
           <span 
