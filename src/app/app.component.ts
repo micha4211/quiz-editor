@@ -53,6 +53,7 @@ export class AppComponent implements OnInit {
         ...x,
         naiveCheckSum: this.generateNaiveCheckSum(x)
       }));
+  
       
     }
     catch (err) {
