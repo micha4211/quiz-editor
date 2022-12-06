@@ -135,7 +135,7 @@ export class AppComponent implements OnInit {
   getEditedQuiz = () => this.quizzes.filter(x => 
     !x.newlyAdded 
     && !x.markedForDelete
-    && this.generateNaiveCheckSum(x) != x.naiveCheckSum
+    && this.generateNaiveCheckSum(x) != x.naiveCheckSum 
     );
 
   get editedQuizCount() {

@@ -30,9 +30,10 @@
             <small class="fst-italic fw-lighter p-2">
               {{ q.quizQuestions.length }} questions
             </small>
-            <span *ngIf="q.markedForDelete === true" class="position-absolute top-50 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"></span>
-            <span *ngIf="q.newlyAdded === true" class="position-absolute top-50 start-100 translate-middle p-2 bg-success border border-light rounded-circle"></span>
-            <span *ngIf="q.newlyAdded === true"  class="position-absolute top-50 start-100 translate-middle p-2 bg-success border border-light rounded-circle"></span>
+            <span class="position-absolute top-50 start-100 translate-middle p-2 rounded-circle"
+            [class.bg-danger.border.border-light]="q.markedForDelete === true"
+            [class.bg-success]="q.newlyAdded === true" 
+            ></span>
           </button>
         </div>
       </div>
@@ -43,8 +44,8 @@
     <div class="col-md-8" *ngIf="selectedQuiz !== undefined">
       <div class="d-flex align-content-center">
         <button class="btn"
-        [class.btn-outline-success]="deletedQuizCount + editedQuizCount + addedQuizzesCount == 0"
-        [class.btn-success]="deletedQuizCount + editedQuizCount + addedQuizzesCount > 0"
+        [class.btn-success]="deletedQuizCount + editedQuizCount + addedQuizzesCount == 0"
+        [class.btn-outline-success]="deletedQuizCount + editedQuizCount + addedQuizzesCount > 0"
         (click)="saveQuizzes()"
         >
           Save
