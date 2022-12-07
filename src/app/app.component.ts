@@ -29,12 +29,6 @@ export class AppComponent implements OnInit {
 
   errorLoadingQuizzes = false;
 
-  /*loadQuizzesFromWeb = () => {
-    
-    this.quizzes = [];
-    this.quizzesLoaded = true;
-  };*/
-
   loadQuizzesFromWeb = async () => {
     console.log(this.quizzesLoaded);
     try {
