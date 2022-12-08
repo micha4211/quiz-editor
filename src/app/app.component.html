@@ -42,56 +42,6 @@
         <span>No Quizzes to display!</span>
       </div>
     </div>
-    <div class="col-md-8" *ngIf="selectedQuiz !== undefined">
-      <div class="d-flex align-content-center">
-        <button class="btn"
-        [class.btn-secondary]="deletedQuizCount + editedQuizCount + addedQuizzesCount == 0"
-        [class.btn-outline-secondary]="deletedQuizCount + editedQuizCount + addedQuizzesCount > 0"
-        (click)="saveQuizzes()">
-          Save
-          <span *ngIf="deletedQuizCount > 0" class="badge bg-danger ms-1">- {{ deletedQuizCount }}</span>
-          <span *ngIf="addedQuizzesCount > 0" class="badge bg-success ms-1">+ {{ addedQuizzesCount }}</span>
-          <span *ngIf="editedQuizCount > 0" class="badge bg-warning ms-1">* {{ editedQuizCount }}</span>
-        </button>
-        <button class="btn btn-link" (click)="cancelAllChanges()">Cancel all changes</button>
-      </div>
-      <div class="card mt-3">
-        <div class="card-header">Quiz Title</div>
-        <div class="card-body">
-          <input type="text" class="form-control" [(ngModel)]="selectedQuiz.quizName"/>
-        </div>
-      </div>
-      <div class="card mt-3">
-        <div class="card-header">Questions
-          <span class="text-danger" *ngIf="selectedQuiz.quizQuestions.length === 0">(no questions)</span>
-        </div>
-        <div class="card-body">
-          <button class="btn btn-outline-primary" (click)="addQuestion()">Add Question</button>
-          <div class="row mt-3" *ngFor="let question of selectedQuiz.quizQuestions">
-            <div class="col-md-10">
-              <input type="text" class="form-control"
-              [(ngModel)]="question.questionText"/>
-            </div>
-            <div class="col-md-2">
-              <button class="btn btn-danger" (click)="removeQuestion(question)">
-                Remove
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card mt-3">
-        <div class="card-header text-danger">Danger Zone</div>
-        <div class="card-body">
-          <div class="form-check">
-            <label class="form-check label text-danger">
-              <input type="checkbox" class="form-check-input" [(ngModel)]="selectedQuiz.markedForDelete"/>
-              Marked for Delete
-            </label>
-          </div>    
-        </div>
-      </div>
-    </div>
     <div class="col-md-8"
       *ngIf="selectedQuiz === undefined">
       <div class="card bg-light text-center mt-5">
@@ -110,6 +60,60 @@
           </span>
       </div>
     </div>
-
+    <div class="col-md-8" 
+      [@detailsFromLeft]="detailsFromLeftAnimationState"
+      (@detailsFromLeft.done)="detailsFromLeftAnimationDone()">
+      <div *ngIf="selectedQuiz !== undefined">
+        <div class="d-flex align-content-center">
+          <button class="btn"
+          [class.btn-secondary]="deletedQuizCount + editedQuizCount + addedQuizzesCount == 0"
+          [class.btn-outline-secondary]="deletedQuizCount + editedQuizCount + addedQuizzesCount > 0"
+          (click)="saveQuizzes()">
+            Save
+            <span *ngIf="deletedQuizCount > 0" class="badge bg-danger ms-1">- {{ deletedQuizCount }}</span>
+            <span *ngIf="addedQuizzesCount > 0" class="badge bg-success ms-1">+ {{ addedQuizzesCount }}</span>
+            <span *ngIf="editedQuizCount > 0" class="badge bg-warning ms-1">* {{ editedQuizCount }}</span>
+          </button>
+          <button class="btn btn-link" (click)="cancelAllChanges()">Cancel all changes</button>
+        </div>
+        <div class="card mt-3">
+          <div class="card-header">Quiz Title</div>
+          <div class="card-body">
+            <input type="text" class="form-control" [(ngModel)]="selectedQuiz.quizName"/>
+          </div>
+        </div>
+        <div class="card mt-3">
+          <div class="card-header">Questions
+            <span class="text-danger" *ngIf="selectedQuiz.quizQuestions.length === 0">(no questions)</span>
+          </div>
+          <div class="card-body">
+            <button class="btn btn-outline-primary" (click)="addQuestion()">Add Question</button>
+            <div class="row mt-3" *ngFor="let question of selectedQuiz.quizQuestions">
+              <div class="col-md-10">
+                <input type="text" class="form-control"
+                [(ngModel)]="question.questionText"/>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-danger" (click)="removeQuestion(question)">
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-3">
+          <div class="card-header text-danger">Danger Zone</div>
+          <div class="card-body">
+            <div class="form-check">
+              <label class="form-check label text-danger">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="selectedQuiz.markedForDelete"/>
+                Marked for Delete
+              </label>
+            </div>    
+          </div>
+        </div>
+      </div>
+    </div>
+  
   </div>
 </div>
