@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   errorLoadingQuizzes = false;
 
   loadQuizzesFromWeb = async () => {
-    console.log(this.quizzesLoaded);
+    
     try {
       const data = await this.quizSVC.loadQuizzes();
 
@@ -127,14 +127,17 @@ export class AppComponent implements OnInit {
   };
 
   getEditedQuiz = () => this.quizzes.filter(x => 
-    !x.newlyAdded 
-    && !x.markedForDelete
-    && this.generateNaiveCheckSum(x) != x.naiveCheckSum 
+    this.isQuizEdited(x)
     );
 
   get editedQuizCount() {
     return this.getEditedQuiz().length;
   };
+
+  isQuizEdited = (x: QuizDisplay) =>
+    !x.newlyAdded 
+    && !x.markedForDelete
+    && this.generateNaiveCheckSum(x) != x.naiveCheckSum;
 
   saveQuizzes = async() => {
     try {
