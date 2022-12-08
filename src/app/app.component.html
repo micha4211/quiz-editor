@@ -64,7 +64,8 @@
       [@detailsFromLeft]="detailsFromLeftAnimationState"
       (@detailsFromLeft.done)="detailsFromLeftAnimationDone()">
       <div *ngIf="selectedQuiz !== undefined">
-        <div class="d-flex align-content-center">
+        <div class="d-flex align-content-center"
+          [@pulseSaveCancelButtons]="deletedQuizCount + editedQuizCount + addedQuizzesCount > 0 ? 'somethingToSave' : 'nothingToSave'">
           <button class="btn"
           [class.btn-secondary]="deletedQuizCount + editedQuizCount + addedQuizzesCount == 0"
           [class.btn-outline-secondary]="deletedQuizCount + editedQuizCount + addedQuizzesCount > 0"
